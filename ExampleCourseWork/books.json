@@ -1,0 +1,97 @@
+{
+  "Books": [
+    {
+      "Id": 1,
+      "Title": "Дім дивних дітей",
+      "Author": "Ренсом Ріггз",
+      "Year": 2011,
+      "Genre": "фантастика, роман",
+      "Language": "Language_1",
+      "Annotation": "aaaaaaaad gfgfgf jhgg nhgjgygjv. ddddddddj llll lliohjhj.",
+      "Collection": "",
+      "DisplayInfo": "Дім дивних дітей автора Ренсом Ріггз"
+    },
+    {
+      "Id": 2,
+      "Title": "Місто порожніх",
+      "Author": "Ренсом Ріггз",
+      "Year": 2014,
+      "Genre": "фантастика, роман",
+      "Language": "Language_1",
+      "Annotation": "aaaaa gfgfgf eeeeee nhgjgygjv. ddddddddj llll lliohjhj.",
+      "Collection": "",
+      "DisplayInfo": "Місто порожніх автора Ренсом Ріггз"
+    },
+    {
+      "Id": 3,
+      "Title": "Бібліотека душ",
+      "Author": "'Ренсом Рігг'",
+      "Year": 2015,
+      "Genre": "фантастика, роман",
+      "Language": "Language_2",
+      "Annotation": "cccccccccccccchhc gfgfgf jhgg nhgjgygjv. ddddddddj llll lliohjhj.",
+      "Collection": "Прочитані",
+      "DisplayInfo": "Бібліотека душ автора 'Ренсом Рігг'"
+    },
+    {
+      "Id": 4,
+      "Title": "Карта днів",
+      "Author": "Ренсом Ріггз",
+      "Year": 2018,
+      "Genre": "фантастика, роман",
+      "Language": "Language_3",
+      "Annotation": "wewrhg hkaufg iueyfaw. ketytrev yaetry llll lliohjhj.",
+      "Collection": "Хочу прочитати",
+      "DisplayInfo": "Карта днів автора Ренсом Ріггз"
+    },
+    {
+      "Id": 5,
+      "Title": "Пташині збори",
+      "Author": "Ренсом Ріггз",
+      "Year": 2020,
+      "Genre": "фантастика, роман",
+      "Language": "Language_3",
+      "Annotation": "wewrhg hkaufg iueyfaw. ketytrev yaetry llll lliohjhj.",
+      "Collection": "Хочу прочитати",
+      "DisplayInfo": "Пташині збори автора Ренсом Ріггз"
+    },
+    {
+      "Id": 6,
+      "Title": "Звіяні вітром (1)",
+      "Author": "Маргарет Мітчелл",
+      "Year": 1936,
+      "Genre": "роман",
+      "Language": "Language_3",
+      "Annotation": "wewrhg hkaufg iueyfaw. ketytrev yaetry llll lliohjhj.",
+      "Collection": "Улюблені",
+      "DisplayInfo": "Звіяні вітром (1) автора Маргарет Мітчелл"
+    },
+    {
+      "Id": 7,
+      "Title": "Звіяні вітром (2)",
+      "Author": "Маргарет Мітчелл",
+      "Year": 1936,
+      "Genre": "роман",
+      "Language": "Language_3",
+      "Annotation": "wewrhg hkaufg iueyfaw. ketytrev yaetry llll lliohjhj.",
+      "Collection": "Улюблені",
+      "DisplayInfo": "Звіяні вітром (2) автора Маргарет Мітчелл"
+    },
+    {
+      "Id": 8,
+      "Title": "hello",
+      "Author": "goodbye",
+      "Year": 2019,
+      "Genre": "Fantasy",
+      "Language": "Language",
+      "Annotation": "ffhhggh fjfkdkdm.dkfjfj dkdj.",
+      "Collection": "Улюблені",
+      "DisplayInfo": "hello автора goodbye"
+    }
+  ],
+  "Collections": [
+    "Прочитані",
+    "Хочу прочитати",
+    "Улюблені"
+  ]
+}
