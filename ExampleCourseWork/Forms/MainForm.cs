@@ -254,6 +254,7 @@ namespace ExampleCourseWork.Forms
             EditBookButton.Visible = false;
             AddBookButton.Visible = false;
             AddCollectionButton.Visible = true;
+            DeleteCollectionButton.Visible = true;
             collectionToolStripComboBox.Enabled = true;
             LibrarianButton.Text = "Бібліотекар";
             isLibrarian = false;

@@ -68,6 +68,7 @@
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(362, 22);
             this.PasswordTextBox.TabIndex = 3;
+            this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // EnterButton
             // 
@@ -94,7 +95,7 @@
             this.MaximumSize = new System.Drawing.Size(480, 465);
             this.MinimumSize = new System.Drawing.Size(480, 465);
             this.Name = "LoginForm";
-            this.Text = "LoginForm";
+            this.Text = "Вікно авторизація";
             this.ResumeLayout(false);
             this.PerformLayout();
 

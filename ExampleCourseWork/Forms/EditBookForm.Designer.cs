@@ -278,7 +278,7 @@
             this.MaximumSize = new System.Drawing.Size(818, 515);
             this.MinimumSize = new System.Drawing.Size(818, 515);
             this.Name = "EditBookForm";
-            this.Text = "EditBookForm";
+            this.Text = "Перегляд книги";
             this.panelForTextBox.ResumeLayout(false);
             this.panelForTextBox.PerformLayout();
             this.ResumeLayout(false);

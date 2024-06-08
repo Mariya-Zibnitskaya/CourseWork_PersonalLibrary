@@ -83,24 +83,24 @@ namespace ExampleCourseWork.Models
             
         }
 
-        
-
         public List<Book> SearchBooks(string id, string title, string author, string year, string genre, string language)
         {
             int.TryParse(id, out int parsedId);
-            int.TryParse(year, out int parsedYear);
+
+            bool isYearValid = int.TryParse(year, out int parsedYear) && parsedYear >= 1000 && parsedYear <= 2100;
+            bool isPartialYearSearch = !isYearValid && !string.IsNullOrEmpty(year); 
 
             return Books.Where(book =>
                 (string.IsNullOrEmpty(id) || book.Id == parsedId) &&
                 (string.IsNullOrEmpty(title) || book.Title.IndexOf(title, StringComparison.OrdinalIgnoreCase) >= 0) &&
                 (string.IsNullOrEmpty(author) || book.Author.IndexOf(author, StringComparison.OrdinalIgnoreCase) >= 0) &&
-                (string.IsNullOrEmpty(year) || book.Year == parsedYear) &&
+                ((isYearValid && book.Year == parsedYear) ||
+                 (isPartialYearSearch && book.Year.ToString().Contains(year))) &&
                 (string.IsNullOrEmpty(genre) || book.Genre.IndexOf(genre, StringComparison.OrdinalIgnoreCase) >= 0) &&
                 (string.IsNullOrEmpty(language) || book.Language.IndexOf(language, StringComparison.OrdinalIgnoreCase) >= 0)
             ).ToList();
         }
 
-       
         public void AddBookToCollection(Book book, string collectionName)
         {
             if (Collections.Contains(collectionName))
