@@ -29,7 +29,7 @@ namespace ExampleCourseWork.Forms
             }
             else
             {
-                MessageBox.Show("Invalid username or password.");
+                MessageBox.Show("Неправильне им'я користувача або пароль.");
             }
         }
     }

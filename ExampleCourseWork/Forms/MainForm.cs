@@ -18,7 +18,6 @@ namespace ExampleCourseWork.Forms
     public partial class MainForm : Form
     {
         private Library library;
-        // private List<Book> displayedBooks;
         private List<Book> searchResults;
         private Librarian librarian;
         private bool isLibrarian;
@@ -28,7 +27,7 @@ namespace ExampleCourseWork.Forms
             InitializeComponent();
             library = new Library();
             library.LoadBooksFromJson("C:\\Users\\Masha\\Desktop\\IT-kids\\Nure\\ExampleCourseWork\\ExampleCourseWork\\books.json");
-            librarian = new Librarian("admin", "password");
+            librarian = new Librarian("adminname", "password123");
             searchResults = new List<Book>();
             DisplayBooks(library.Books);
             InitializeCollectionComboBox();
@@ -39,37 +38,24 @@ namespace ExampleCourseWork.Forms
             
         }
 
-        //private void InitializeCollectionComboBox()
-        //{
-        //    collectionToolStripComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-        //    collectionToolStripComboBox.Items.AddRange(new[] { "Прочитані", "Хочу прочитати", "Улюблені" });
-        //    collectionToolStripComboBox.SelectedIndex = 0;
-        //    collectionToolStripComboBox.SelectedIndexChanged += CollectionToolStripComboBox_SelectedIndexChanged;
-        //}
-
         private void InitializeCollectionComboBox()
         {
             collectionToolStripComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            // Очистити існуючі елементи у комбо-боксі
             collectionToolStripComboBox.Items.Clear();
 
-            // Завантажити колекції з файлу
             List<string> collections = library.GetAllCollections();
 
-            // Додати завантажені колекції до комбо-боксу
             if (collections != null)
             {
                 collectionToolStripComboBox.Items.AddRange(collections.ToArray());
             }
 
-            // Вибрати першу колекцію (якщо вони є)
             if (collectionToolStripComboBox.Items.Count > 0)
             {
                 collectionToolStripComboBox.SelectedIndex = 0;
             }
 
-            // Додати обробник події для подальшого вибору колекції
             collectionToolStripComboBox.SelectedIndexChanged += CollectionToolStripComboBox_SelectedIndexChanged;
         }
 
@@ -86,30 +72,24 @@ namespace ExampleCourseWork.Forms
         }
         private void CollectionToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedCollection = collectionToolStripComboBox.SelectedItem?.ToString();
-            ////var booksInCollection = library.Books.Where(b => b.Collection == selectedCollection).ToList();
-            //DisplayBooks(booksInCollection);
+            var selectedCollection = collectionToolStripComboBox.SelectedItem?.ToString();     
             searchResults = library.Books.Where(b => b.Collection == selectedCollection).ToList();
-            ////UpdateResultList(booksInCollection);
-            UpdateResultList(searchResults);
-            MainPageButton.Visible = true;
-            //EditBookButton.Visible = false;
-            //AddBookButton.Visible = false;
-            //MainPageButton.Visible = true;
+            if (searchResults.Any())
+            {
+                UpdateResultList(searchResults);
+                MainPageButton.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show($"Колекція '{selectedCollection}' порожня.", "Наявність книг у колекції", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UpdateResultList(searchResults);
+                MainPageButton.Visible = false;
+            }
+            
         }
 
         private void ResultList_DoubleClick(object sender, EventArgs e)
         {
-            //if (ResultList.SelectedIndex == -1)
-            //{
-            //    MessageBox.Show("Please select a book to edit.");
-            //    return;
-            //}
-            //var selectedBook = library.Books[ResultList.SelectedIndex];
-            //using (var ViewBookForm = new EditBookForm(selectedBook, false, library, false))
-            //{
-            //    ViewBookForm.ShowDialog();
-            //}
             var selectedBook = GetSelectedBook();
             if (selectedBook != null)
             {
@@ -122,17 +102,12 @@ namespace ExampleCourseWork.Forms
 
         private Book GetSelectedBook()
         {
-            ////return (Book)ResultList.SelectedItem;
             var selectedBook = (string)ResultList.SelectedItem;
             return library.Books.FirstOrDefault(b => $"{b.DisplayInfo}" == selectedBook);
         }
 
         private void DisplayBooks(List<Book> books)
         {
-            //  ResultList.DataSource = books.Select(b => $"{b.Title} автора {b.Author}").ToList();
-            ////ResultList.DataSource = null;
-            ////ResultList.DataSource = library.Books;
-            ////ResultList.DisplayMember = "DisplayInfo";
             ResultList.DataSource = null;
             ResultList.DataSource = library.Books.Select(b => $"{b.DisplayInfo}").ToList();
         }
@@ -154,10 +129,7 @@ namespace ExampleCourseWork.Forms
             var languageText = LanguageTextBox.Text.Trim();
 
             searchResults = library.SearchBooks(idText, titleText, authorText, yearText, genreText, languageText);
-           // DisplayBooks(searchResults);
-
-            /////
-
+           
             UpdateResultList(searchResults);
 
 
@@ -169,26 +141,17 @@ namespace ExampleCourseWork.Forms
             ResultList.DataSource = books.Select(b => $"{b.DisplayInfo}").ToList();
             if (books.Count == 0)
             {
-                MessageBox.Show("No");
+                MessageBox.Show("Книг не знайдено.");
                 DisplayBooks(library.Books);
             }
 
-
-
-            ////ResultList.DataSource = null;
-            ////ResultList.DataSource = books;
-            ////ResultList.DisplayMember = "DisplayInfo";
-
-
-            // DisplayBooks(books);
         }
 
-        ///////
         private void EditBookButton_Click(object sender, EventArgs e)
         {
             if (ResultList.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a book to edit.");
+                MessageBox.Show("Оберіть книгу для редагування.");
                 return;
             }
 
@@ -240,29 +203,11 @@ namespace ExampleCourseWork.Forms
             }
         }
 
-        //private void AddNewCollection(string collectionName)
-        //{
-        //    if (!library.Collections.Contains(collectionName))
-        //    {
-        //        library.Collections.Add(collectionName);
-        //        UpdateComboBoxes();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Така колекція вже існує.");
-        //    }
-
-        //}
-
         private void UpdateComboBoxes()
         {
             collectionToolStripComboBox.Items.Clear();
             collectionToolStripComboBox.Items.AddRange(library.Collections.ToArray());
 
-            //using (var editBookForm = new EditBookForm(null, false, library))
-            //{
-            //    editBookForm.UpdateCollectionComboBoxes();
-            //}
             foreach (Form form in Application.OpenForms)
             {
                 if (form is EditBookForm editBookForm)
@@ -324,10 +269,9 @@ namespace ExampleCourseWork.Forms
                     library.DeleteCollection(CollectionName);
                     List<Book> booksToRemove = library.GetBooksByCollection(CollectionName);
 
-                    // Оновлення параметра "Collection" для кожної книги
                     foreach (Book book in booksToRemove)
                     {
-                        book.Collection = string.Empty; // Встановлення порожнього рядка для параметра "Collection"
+                        book.Collection = string.Empty; 
                     }
 
                     UpdateComboBoxes();
@@ -352,13 +296,12 @@ namespace ExampleCourseWork.Forms
         {
             try
             {
-                //List<Book> filteredBook = ResultList.Items.Cast<Book>().ToList();
                 
                 library.SaveLibraryAsTxt(searchResults, FilePath);
             }
             catch(Exception ex)
             {
-                MessageBox.Show($"Error {ex.Message}");
+                MessageBox.Show($"Помилка збереження списку книг у файл TXT: {ex.Message}");
             }
             
         }

@@ -38,7 +38,6 @@ namespace ExampleCourseWork.Forms
 
         private void InitializeCollectionComboBox()
         {
-           // CollectionComboBox.Items.AddRange(new[] { "Read", "Will read", "Love" });
             CollectionComboBox.Items.Clear();
             CollectionComboBox.Items.AddRange(library.Collections.ToArray());
             CollectionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -70,7 +69,6 @@ namespace ExampleCourseWork.Forms
             LanguagetextBox.Text = book.Language;
             AnnotationtextBox.Text = book.Annotation;
 
-            // У режимі перегляду зробити поля недоступними для редагування
             if (!isEditMode)
             {
                 CollectionComboBox.Enabled = false;
@@ -81,7 +79,6 @@ namespace ExampleCourseWork.Forms
                 GenretextBox.ReadOnly = true;
                 LanguagetextBox.ReadOnly = true;
                 AnnotationtextBox.ReadOnly = true;
-                //DeleteButton.Visible = false;
                 
             }
             if (isNewBook)
@@ -90,59 +87,12 @@ namespace ExampleCourseWork.Forms
             }
             DeleteButton.Visible = isLibrarian;
             RemoveBookFromCollectionButton.Visible = !isLibrarian;
-
-
-            //else
-            //{
-            //    DeleteButton.Visible = true;              
-            //}
-            //if(!isNewBook){ 
-            //    book.LoadBookData(IdtextBox, TitleTextBox, AuthortextBox, YeartextBox, GenretextBox, LanguagetextBox, AnnotationtextBox);
-            //}
-            //if (!isEditMode)
-            //{
-            //    IdtextBox.ReadOnly = true;
-            //    TitleTextBox.ReadOnly = true;
-            //    AuthortextBox.ReadOnly = true;
-            //    YeartextBox.ReadOnly = true;
-            //    GenretextBox.ReadOnly = true;
-            //    LanguagetextBox.ReadOnly = true;
-            //    AnnotationtextBox.ReadOnly = true;
-
-            //    OkButton.Visible = false;
-            //    DeleteButton.Visible = false;
-            //    CancelButton.Text = "Закрити";
-
-            //}
-            //else
-            //{
-            //    IdtextBox.ReadOnly = true;
-            //    DeleteButton.Visible = !isNewBook;
-
-            //}
         }
 
         
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            //if (isEditMode || isNewBook)
-            //{
-            //    book.Title = TitleTextBox.Text;
-            //    book.Author = AuthortextBox.Text;
-            //    book.Year = Convert.ToInt32(YeartextBox.Text);
-            //    book.Genre = GenretextBox.Text;
-            //    book.Language = LanguagetextBox.Text;
-            //    book.Annotation = AnnotationtextBox.Text;
-            //    book.Collection = CollectionComboBox.SelectedItem?.ToString();
-
-            //    if (isNewBook)
-            //    {
-            //        library.Books.Add(book);
-            //    }
-            //    this.DialogResult = DialogResult.OK;
-            //}
-            //this.Close();
             if (ValidateBookData())
             {
                 book.Id = int.Parse(IdtextBox.Text);
@@ -152,7 +102,7 @@ namespace ExampleCourseWork.Forms
                 book.Genre = GenretextBox.Text;
                 book.Language = LanguagetextBox.Text;
                 book.Annotation = AnnotationtextBox.Text;
-                book.Collection = CollectionComboBox.SelectedItem?.ToString(); // Зберегти вибрану колекцію
+                book.Collection = CollectionComboBox.SelectedItem?.ToString();
 
                 if (isNewBook)
                 {
@@ -171,11 +121,8 @@ namespace ExampleCourseWork.Forms
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
-        {///////
-            
-            /////
-            ///
-            var result = MessageBox.Show("Are you sure you want to delete this book?", "Confirm Delete", MessageBoxButtons.OKCancel);
+        {
+            var result = MessageBox.Show("Ви дійсно хочете видалити цю книгу?", "Підтвердження видалення", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
                 library.Books.Remove(book);
@@ -186,10 +133,9 @@ namespace ExampleCourseWork.Forms
 
         private bool ValidateBookData()
         {
-            // Додайте перевірку даних книги перед збереженням
-            if (string.IsNullOrEmpty(TitleTextBox.Text) || string.IsNullOrEmpty(AuthortextBox.Text) || string.IsNullOrEmpty(GenretextBox.Text))
+            if (string.IsNullOrEmpty(TitleTextBox.Text) || string.IsNullOrEmpty(AuthortextBox.Text) || string.IsNullOrEmpty(YeartextBox.Text) || string.IsNullOrEmpty(GenretextBox.Text))
             {
-                MessageBox.Show("Будь ласка, заповніть всі обов'язкові поля.");
+                MessageBox.Show("Будь ласка, заповніть всі обов'язкові поля: назва, автор, рік, жанр");
                 return false;
             }
 
@@ -225,13 +171,9 @@ namespace ExampleCourseWork.Forms
                 return;
             }
 
-            // Видалення книги з обраної колекції
             library.RemoveBookFromCollection(selectedBook, collectionName);
 
-            // Оновлення списку книг у ResultList
-            //  UpdateResultList(library.GetBooksByCollection(collectionName));
             UpdateCollectionComboBoxes(collections);
-            // Повідомлення про успішне видалення книги з колекції
             MessageBox.Show($"Книгу '{selectedBook.Title}' видалено з колекції '{collectionName}'.", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

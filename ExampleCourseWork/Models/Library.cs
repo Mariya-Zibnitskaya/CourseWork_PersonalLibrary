@@ -39,7 +39,6 @@ namespace ExampleCourseWork.Models
                     }
                     else
                     {
-                        // Якщо вихідний JSON не містить дані про книги, ініціалізуйте порожній список
                         Books = new List<Book>();
                     }
 
@@ -49,7 +48,6 @@ namespace ExampleCourseWork.Models
                     }
                     else
                     {
-                        // Якщо вихідний JSON не містить даних про колекції, ініціалізуйте порожній список
                         Collections = new List<string>();
                     }
                 }
@@ -184,11 +182,11 @@ namespace ExampleCourseWork.Models
                     }
                 }
 
-                MessageBox.Show("Library saved as TXT successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Список книг успішно збережено.", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving library as TXT: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Помилка збереження книг до файлу TXT: {ex.Message}", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

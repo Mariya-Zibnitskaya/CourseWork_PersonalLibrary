@@ -54,7 +54,7 @@
             // 
             // panelForTextBox
             // 
-            this.panelForTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelForTextBox.BackColor = System.Drawing.Color.OldLace;
             this.panelForTextBox.Controls.Add(this.RemoveBookFromCollectionButton);
             this.panelForTextBox.Controls.Add(this.CollectionComboBox);
             this.panelForTextBox.Controls.Add(this.label8);
@@ -130,7 +130,7 @@
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(107, 30);
             this.CancelButton.TabIndex = 15;
-            this.CancelButton.Text = "Відмінити";
+            this.CancelButton.Text = "Скасувати";
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
@@ -272,9 +272,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.Linen;
             this.ClientSize = new System.Drawing.Size(800, 468);
             this.Controls.Add(this.panelForTextBox);
+            this.MaximumSize = new System.Drawing.Size(818, 515);
+            this.MinimumSize = new System.Drawing.Size(818, 515);
             this.Name = "EditBookForm";
             this.Text = "EditBookForm";
             this.panelForTextBox.ResumeLayout(false);

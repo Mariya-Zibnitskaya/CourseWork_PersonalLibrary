@@ -52,7 +52,7 @@
             this.CancelNameButton.Name = "CancelNameButton";
             this.CancelNameButton.Size = new System.Drawing.Size(102, 38);
             this.CancelNameButton.TabIndex = 1;
-            this.CancelNameButton.Text = "Відмінити";
+            this.CancelNameButton.Text = "Скасувати";
             this.CancelNameButton.UseVisualStyleBackColor = true;
             this.CancelNameButton.Click += new System.EventHandler(this.CancelNameButton_Click);
             // 
@@ -77,11 +77,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Linen;
             this.ClientSize = new System.Drawing.Size(494, 194);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.collectionTextBox);
             this.Controls.Add(this.CancelNameButton);
             this.Controls.Add(this.SaveNameButton);
+            this.MaximumSize = new System.Drawing.Size(512, 241);
+            this.MinimumSize = new System.Drawing.Size(512, 241);
             this.Name = "InputBoxForm";
             this.Text = "Створення нової колекції";
             this.ResumeLayout(false);
