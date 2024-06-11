@@ -95,7 +95,8 @@ namespace ExampleCourseWork.Models
                 (string.IsNullOrEmpty(title) || book.Title.IndexOf(title, StringComparison.OrdinalIgnoreCase) >= 0) &&
                 (string.IsNullOrEmpty(author) || book.Author.IndexOf(author, StringComparison.OrdinalIgnoreCase) >= 0) &&
                 (string.IsNullOrEmpty(year) ||
-                 (isYearValid && book.Year >= parsedYear && book.Year <= currentYear)) &&
+                (isYearValid && year.Length == 4 && book.Year == parsedYear) ||
+                (isYearValid && year.Length == 3 && book.Year >= parsedYear * 10 && book.Year <= currentYear)) &&
                 (string.IsNullOrEmpty(genre) || book.Genre.IndexOf(genre, StringComparison.OrdinalIgnoreCase) >= 0) &&
                 (string.IsNullOrEmpty(language) || book.Language.IndexOf(language, StringComparison.OrdinalIgnoreCase) >= 0)
             ).ToList();
